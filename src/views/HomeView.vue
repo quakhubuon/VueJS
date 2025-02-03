@@ -23,7 +23,7 @@
         <input type="input" placeholder="Enter Search Here!!!" v-model="txtSearch">
     </main>
     <div class="group-card">
-        <div class="card-item" v-for="todo in filterUsers">
+        <div class="card-item" v-for="todo in filterUsers" :key="todo.id">
             <div @click="router.push({ path:`/todo/${todo?.id}` })">
                 <h2>{{ todo?.name }}</h2>
                 <i>{{ todo?.email }}</i>
