@@ -1,9 +1,11 @@
 <script setup>
+    import { useToDoStore } from '@/store/ToDoStore';
     import { computed, ref, onMounted} from 'vue';
     import { useRouter } from 'vue-router'
     
     const todos = ref([]);
     const txtSearch = ref('');
+    const {users} = useToDoStore();
 
     onMounted(() => {
         fetch('https://jsonplaceholder.typicode.com/users')
@@ -23,7 +25,7 @@
         <input type="input" placeholder="Enter Search Here!!!" v-model="txtSearch">
     </main>
     <div class="group-card">
-        <div class="card-item" v-for="todo in filterUsers" :key="todo.id">
+        <div class="card-item" v-for="todo in users" :key="todo.id">
             <div @click="router.push({ path:`/todo/${todo?.id}` })">
                 <h2>{{ todo?.name }}</h2>
                 <i>{{ todo?.email }}</i>
