@@ -1,11 +1,7 @@
 <script setup>
+    import router from '@/router';
     import { useToDoStore } from '@/store/ToDoStore';
-    import { computed, ref, onMounted} from 'vue';
-    import { useRouter } from 'vue-router'
-    
     const store = useToDoStore();
-
-    const router = useRouter();
 </script>
 
 <template>

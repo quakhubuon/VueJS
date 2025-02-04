@@ -1,25 +1,15 @@
 <script setup>
-    import { useRoute } from 'vue-router';
-    import { ref, onMounted } from 'vue';
-
-    const route = useRoute();
-    const user = ref(null);
-
-    onMounted(() => {
-        fetch(`https://jsonplaceholder.typicode.com/users/${ route.params.id }`)
-        .then(response => response.json())
-        .then(json => user.value = json)
-    })
-
+    import { useToDoStore } from '@/store/ToDoStore';
+    const store = useToDoStore();
 </script>
 
 <template>
     <div class="group-card">
         <div class="card-item">
-            <h2>{{ user?.name }}</h2>
-            <h2>{{ user?.email }}</h2>
-            <h2>{{ user?.phone }}</h2>
-            <h2>{{ user?.username }}</h2>
+            <h2>{{ store.detailUser.id }}</h2>
+            <h2>{{ store.detailUser.name }}</h2>
+            <h2>{{ store.detailUser.email }}</h2>
+            <h2>{{ store.detailUser.phone }}</h2>
         </div>
     </div>
 </template>
