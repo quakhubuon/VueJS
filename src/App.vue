@@ -11,7 +11,7 @@
             </RouterLink>
             
             <RouterLink to="/create">
-                <div class="btn-action">create</div>
+                <div class="btn-action">Create</div>
             </RouterLink>
         </nav>
     </header>

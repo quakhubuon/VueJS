@@ -23,5 +23,9 @@ export const useToDoStore =  defineStore('todos', () => {
         return users.value.find(item => item.id == router.params.id)
     })
 
-    return { users, txtSearch, hadleChangetxtSearch, filterUsers, detailUser };
+    const handleCreateUser = (body) => {
+        users.value.push(body);
+    }
+
+    return { users, txtSearch, hadleChangetxtSearch, filterUsers, detailUser, handleCreateUser };
 });
