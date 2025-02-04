@@ -3,29 +3,17 @@
     import { computed, ref, onMounted} from 'vue';
     import { useRouter } from 'vue-router'
     
-    const todos = ref([]);
-    const txtSearch = ref('');
-    const {users} = useToDoStore();
-
-    onMounted(() => {
-        fetch('https://jsonplaceholder.typicode.com/users')
-        .then(response => response.json())
-        .then(json => todos.value = json)
-    })
-
-    const filterUsers = computed(() => {
-        return todos.value.filter(item => item.name.toUpperCase().indexOf(txtSearch.value.toUpperCase()) !== -1 || item.email.toUpperCase().indexOf(txtSearch.value.toUpperCase()) !== -1)
-    })
+    const store = useToDoStore();
 
     const router = useRouter();
 </script>
 
 <template>
     <main style="padding: 2rem; color: #000;">
-        <input type="input" placeholder="Enter Search Here!!!" v-model="txtSearch">
+        <input type="input" placeholder="Enter Search Here!!!" v-on:input="(event) => store.hadleChangetxtSearch(event.target.value)">
     </main>
     <div class="group-card">
-        <div class="card-item" v-for="todo in users" :key="todo.id">
+        <div class="card-item" v-for="todo in store.filterUsers" :key="todo.id">
             <div @click="router.push({ path:`/todo/${todo?.id}` })">
                 <h2>{{ todo?.name }}</h2>
                 <i>{{ todo?.email }}</i>
