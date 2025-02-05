@@ -16,6 +16,12 @@ const router = createRouter({
       name: 'create',
       component: CreateView
     },
+    ,
+    {
+      path: '/create/:id',
+      name: 'update',
+      component: CreateView
+    },
     {
       path: '/todo/:id',
       name: 'todoDetail',

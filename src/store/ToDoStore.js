@@ -31,5 +31,14 @@ export const useToDoStore =  defineStore('todos', () => {
         users.value = users.value.filter(item => item.id !== id);
     }
 
-    return { users, txtSearch, handleChangetxtSearch , filterUsers, detailUser, handleCreateUser, handleDeleteUser };
+    const handleUpdateUser = (body) => {
+        const index = users.value.findIndex(item => body.id == item.id);
+        if (index !== -1) {
+            users.value[index].name = body.name;
+            users.value[index].email = body.email;
+            users.value[index].phone = body.phone;  
+        }
+    }
+
+    return { users, txtSearch, handleChangetxtSearch , filterUsers, detailUser, handleCreateUser, handleDeleteUser, handleUpdateUser };
 });

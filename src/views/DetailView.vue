@@ -24,6 +24,8 @@
             <h2>{{ store.detailUser.phone }}</h2>
         </div>
         <div style="display: flex;">
+            <div v-on:click="router.push({ path:`/create/${store.detailUser.id}` })" class="btn-main" style="margin-top: 1rem; border-radius: 50px; color: white;">Update User</div>
+            <span style="padding: 0px 10px;"></span>
             <div v-on:click="handleDelete()" class="btn-main" style="margin-top: 1rem; border-radius: 50px; color: white;">Delete User</div>
         </div>
     </div>

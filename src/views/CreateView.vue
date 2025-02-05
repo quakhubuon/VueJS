@@ -1,18 +1,24 @@
 <script setup>
     import { useToDoStore } from '@/store/ToDoStore';
     import { reactive } from 'vue';
-    import { useRouter } from 'vue-router';
+    import { useRoute, useRouter } from 'vue-router';
 
+    const route = useRoute();
     const store = useToDoStore();
     const todoData = reactive({
-        name: '',
-        email: '',
-        phone: ''
+        name: route.params.id ? store.detailUser.name : '',
+        email: route.params.id ? store.detailUser.email : '',
+        phone: route.params.id ? store.detailUser.phone : ''
     })
 
     const router = useRouter();
     const handleCreateNewData = async() => {
         store.handleCreateUser({id: String(Math.random()), ...todoData});
+        router.push('/')
+    }
+
+    const handleUpdateData = async() => {
+        store.handleUpdateUser({id: route.params.id, ...todoData});
         router.push('/')
     }
 </script>
@@ -30,7 +36,7 @@
             <input type="input" placeholder="Enter Phone Here!!!" v-model="todoData.phone">
         </div>
         <div style="display: flex;">
-            <div v-on:click="handleCreateNewData()" class="btn-main" style="margin-top: 1rem; border-radius: 50px; color: white;">Create New</div>
+            <div v-on:click="route.params.id ? handleUpdateData() : handleCreateNewData()" class="btn-main" style="margin-top: 1rem; border-radius: 50px; color: white;">{{ route.params.id ? 'Update User' : 'Create New' }}</div>
         </div>
     </main>
 </template>
