@@ -1,15 +1,30 @@
 <script setup>
     import { useToDoStore } from '@/store/ToDoStore';
+    import { useRoute, useRouter } from 'vue-router';
     const store = useToDoStore();
+    const router = useRouter();
+    const route = useRoute();
+
+    const handleDelete = () => {
+        if (route.params.id) {
+            store.handleDeleteUser(route.params.id);
+            router.push('/')
+        } else {
+            console.log('error');
+        }
+    }
 </script>
 
 <template>
-    <div class="group-card">
+    <div class="group-card" v-if="store.detailUser">
         <div class="card-item">
             <h2>{{ store.detailUser.id }}</h2>
             <h2>{{ store.detailUser.name }}</h2>
             <h2>{{ store.detailUser.email }}</h2>
             <h2>{{ store.detailUser.phone }}</h2>
+        </div>
+        <div style="display: flex;">
+            <div v-on:click="handleDelete()" class="btn-main" style="margin-top: 1rem; border-radius: 50px; color: white;">Delete User</div>
         </div>
     </div>
 </template>

@@ -6,7 +6,7 @@
 
 <template>
     <main style="padding: 2rem; color: #000;">
-        <input type="input" placeholder="Enter Search Here!!!" v-on:input="(event) => store.hadleChangetxtSearch(event.target.value)">
+        <input type="input" placeholder="Enter Search Here!!!" v-on:input="(event) => store.handleChangetxtSearch (event.target.value)">
     </main>
     <div class="group-card">
         <div class="card-item" v-for="todo in store.filterUsers" :key="todo.id">

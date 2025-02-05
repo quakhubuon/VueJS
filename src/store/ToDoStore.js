@@ -10,7 +10,7 @@ export const useToDoStore =  defineStore('todos', () => {
     ]);
 
     const txtSearch = ref('');
-    const hadleChangetxtSearch = (value) => {
+    const handleChangetxtSearch  = (value) => {
         txtSearch.value = value;
     }
 
@@ -27,5 +27,9 @@ export const useToDoStore =  defineStore('todos', () => {
         users.value.push(body);
     }
 
-    return { users, txtSearch, hadleChangetxtSearch, filterUsers, detailUser, handleCreateUser };
+    const handleDeleteUser = (id) => {
+        users.value = users.value.filter(item => item.id !== id);
+    }
+
+    return { users, txtSearch, handleChangetxtSearch , filterUsers, detailUser, handleCreateUser, handleDeleteUser };
 });
